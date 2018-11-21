@@ -315,5 +315,16 @@
             "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
         }
     },
-    "prefer-stable": true
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../*"
+        },
+        {
+            "type": "path",
+            "url": "../*/*"
+        }
+    ]
 }
