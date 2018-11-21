@@ -5,7 +5,7 @@
  */
 namespace Magento\Framework\View\Element\Template\File;
 
-use \Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Component\ComponentRegistrar;
 
 /**
@@ -110,9 +110,21 @@ class Validator
                     || $this->isPathInDirectories($filename, $this->moduleDirs)
                     || $this->isPathInDirectories($filename, $this->_themesDir)
                     || $this->_isAllowSymlinks)
-                && $this->getRootDirectory()->isFile($this->getRootDirectory()->getRelativePath($filename));
+                && $this->_filesystem->getDirectoryReadByPath($this->getDirectoryByFile($filename))->isFile($filename);
         }
         return $this->_templatesValidationResults[$filename];
+    }
+
+    /**
+     * Extract directory path from file name.
+     *
+     * @param string $filename
+     * @return string
+     */
+    private function getDirectoryByFile(string $filename): string
+    {
+        $filename = explode("/", $filename, -1);
+        return implode("/", $filename);
     }
 
     /**

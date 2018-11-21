@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Magento\Framework\Filesystem\Directory;
 
+use Magento\Framework\Component\ComponentRegistrar;
 use Magento\Framework\Exception\ValidatorException;
 use Magento\Framework\Filesystem\DriverInterface;
 use Magento\Framework\Phrase;
@@ -60,6 +61,13 @@ class PathValidator implements PathValidatorInterface
         if (mb_strpos($actualPath, $realDirectoryPath) !== 0
             && $path .DIRECTORY_SEPARATOR !== $realDirectoryPath
         ) {
+            $componentsPaths = (new ComponentRegistrar())->getPaths(ComponentRegistrar::MODULE);
+            foreach ($componentsPaths as $componentPath) {
+                if (mb_strpos($actualPath, $componentPath) === 0) {
+                    return;
+                }
+            }
+
             throw new ValidatorException(
                 new Phrase(
                     'Path "%1" cannot be used with directory "%2"',
