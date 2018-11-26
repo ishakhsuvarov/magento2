@@ -19,7 +19,7 @@ class GeneratedFiles
     /**
      * Separator literal to assemble timer identifier from timer names
      */
-    const REGENERATE_FLAG = '/var/.regenerate';
+    const REGENERATE_FLAG = 'var/.regenerate';
 
     /**
      * @var DirectoryList
