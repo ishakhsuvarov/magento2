@@ -130,6 +130,6 @@ class Cryptographer
     private function validateCipherMethod($cipherMethod)
     {
         $methods = openssl_get_cipher_methods();
-        return (false !== array_search($cipherMethod, $methods));
+        return (false !== array_search(mb_strtolower($cipherMethod), array_map('strtolower', $methods)));
     }
 }
