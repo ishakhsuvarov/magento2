@@ -47,4 +47,15 @@ class GroupedTest extends AbstractProductExportImportTestCase
 
         $this->assertEquals($expectedAssociatedProductSkus, $actualAssociatedProductSkus);
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @magentoDbIsolation enabled
+     * @dataProvider exportImportDataProvider
+     */
+    public function testImportExport(array $fixtures, array $skus, array $skippedAttributes = []): void
+    {
+        parent::testImportExport($fixtures, $skus, $skippedAttributes);
+    }
 }
