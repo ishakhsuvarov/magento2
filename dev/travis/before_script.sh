@@ -16,12 +16,13 @@ case $TEST_SUITE in
         test_set_list=("${tests_directory[@]}" "${module_directories[@]}")
 
         test_set_count=$(printf "$test_set_list" | wc -l)
-        test_set_size[1]=$(printf "%.0f" $(echo "$test_set_count*0.15" | bc))
-        test_set_size[2]=$(printf "%.0f" $(echo "$test_set_count*0.17" | bc))
+        test_set_size[1]=$(printf "%.0f" $(echo "$test_set_count*0.14" | bc))
+        test_set_size[2]=$(printf "%.0f" $(echo "$test_set_count*0.20" | bc))
         test_set_size[3]=$(printf "%.0f" $(echo "$test_set_count*0.30" | bc))
-        test_set_size[4]=$(printf "%.0f" $(echo "$test_set_count*0.26" | bc))
-        test_set_size[5]=$((test_set_count-test_set_size[1]-test_set_size[2]-test_set_size[3]-test_set_size[4]))
-        echo "Total = ${test_set_count}; Batch #1 = ${test_set_size[1]}; Batch #2 = ${test_set_size[2]}; Batch #3 = ${test_set_size[3]}; Batch #4 = ${test_set_size[4]}; Batch #5 = ${test_set_size[5]};";
+        test_set_size[4]=$(printf "%.0f" $(echo "$test_set_count*0.25" | bc))
+        test_set_size[5]=$(printf "%.0f" $(echo "$test_set_count*0.15" | bc))
+        test_set_size[6]=$((test_set_count-test_set_size[1]-test_set_size[2]-test_set_size[3]-test_set_size[4]-test_set_size[5]))
+        echo "Total = ${test_set_count}; Batch #1 = ${test_set_size[1]}; Batch #2 = ${test_set_size[2]}; Batch #3 = ${test_set_size[3]}; Batch #4 = ${test_set_size[4]}; Batch #5 = ${test_set_size[5]}; Batch #6 = ${test_set_size[6]};";
 
         echo "==> preparing integration testsuite on index $INTEGRATION_INDEX with set size of ${test_set_size[$INTEGRATION_INDEX]}"
         cp phpunit.xml.dist phpunit.xml
